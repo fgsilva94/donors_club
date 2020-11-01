@@ -9,34 +9,23 @@
 
 ## Enquadramento:
 
-Com o intuito de diminuir o desperdício de bens de consumo, móveis, eletrônicos e muitos outro, iremos implementar uma plataforma de doações.
+Com o intuito de diminuir o desperdício de bens de consumo, móveis, eletrônicos e muitos outro, iremos implementar uma plataforma de doações oferecendo uma forma fácil e intuitiva para os utilizadores anunciarem os produtos que não utilizam mais para doações. Assim evitamos o desperdício do produto além de ajudar alguém necessitado.
 
-Vivemos em um mundo onde as pessoas estão cada vez mais preocupadas em comprar o telemóvel do ano, comprar roupas que só vão usar uma ou duas vezes, sendo que na maioria dos casos todos esses produtos acabam indo parar no lixo, mesmo estando em boas condições de funcionamento.
+Todos os anos milhares de toneladas de roupas[1], brinquedos, móveis, aparelhos eletrônicos[2] e eletrodomésticos são descartados de forma incorreta contribuindo para o aumento da poluição e desperdiçando uma enorme quantidade de matéria prima que foi utilizada durante a produção.
 
-Todos os anos milhares de toneladas de roupas, brinquedos, móveis, aparelhos eletrônicos e eletrodomésticos são descartados de forma incorreta contribuindo para o aumento da poluição e desperdiçando uma enorme quantidade de matéria prima que foi utilizada durante a produção.
+Vivemos em um mundo onde as pessoas estão cada vez mais preocupadas em comprar o telemóvel do ano[3], comprar roupas que só vão usar uma ou duas vezes, sendo que na maioria dos casos todos esses produtos acabam sendo descartados[4], mesmo estando em boas condições de funcionamento.
 
 A nossa plataforma pretende oferecer uma forma fácil e intuitiva para os utilizadores publicarem os produtos que não utilizam mais para doações. Assim podemos ajudar alguém necessitado e contribuir para diminuição do desperdício de produtos ainda em bom estado.
 
 
-
-**Produto Similar:**
-
-- [Doe! - Doar coisas ou serviços](https://play.google.com/store/apps/details?id=com.markpcs.Doe_app&hl=en)
- 
-**Referências:**
-
-1. [Textiles: Material-Specific Data](https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/textiles-material-specific-data)
-2. [Portuguese throw away 200,000 tons of clothing per year](https://www.theportugalnews.com/news/portuguese-throw-away-200000-tons-of-clothing-per-year/49026)
-3. [230 tons of clothes go to waste](https://www.publico.pt/2019/04/09/impar/noticia/portugal-deitase-lixo-200-mil-toneladas-roupa-ano-1868568)
-4. [Ready-to-Waste: America’s Clothing Crisis](https://www.saturdayeveningpost.com/2018/01/ready-waste-americas-clothing-crisis/)
-
+**Produto similar:** https://www.freecycle.org/ [5]
 
 ## Casos de utilização:
 
 ### Anuncio de produtos
 
 **Descrição:**
-Os utilizadores tem a possibilidade de anunciar produtos que querem doar no site.
+Os utilizadores têm a possibilidade de anunciar produtos que querem doar no site.
 
 **Pré-condições:**
 
@@ -45,7 +34,7 @@ Os utilizadores tem a possibilidade de anunciar produtos que querem doar no site
 **Passo a passo:**
 
 1. Na aplicação do utilizador terá a opção de anunciar produto.
-1. Inserir os dados do anúncio (nome, quantidade, estado, localização, descrição) e poderá optar por deixar alguma forma de contato (email, telefone ou mensagem no site ou na app).
+2. Inserir os dados do anúncio (nome, quantidade, estado, localização, descrição) e poderá optar por deixar alguma forma de contato (email, telefone ou mensagem no site ou na app).
 
 **Pós-condições:**
 NA
@@ -79,7 +68,7 @@ Os utilizadores terão a opção de enviar mensagem ao anunciante do produto.
 **Passo a passo:**
 
 1. Na página do anúncio o utilizador clica no botão "Enviar Mensagem".
-1. Poderá colocar um título, a mensagem e outras opções de contato para enviar ao anunciante.
+2. Poderá colocar um título, a mensagem e outras opções de contato para enviar ao anunciante.
 
 **Pós-condições:**
 
@@ -87,10 +76,12 @@ Os utilizadores terão a opção de enviar mensagem ao anunciante do produto.
 
 ## Referências:
 
-[1] United States Environmental Protection Agency, EPA (2017). Textiles: Material-Specific Data. Acedido em: 31/10/2020 em: https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/textiles-material-specific-data
+[1] Diário de notícias (2019). Portugueses deitam fora 200 mil toneladas de roupa por ano. Acedido em: 01/11/2020 em: https://www.dn.pt/edicao-do-dia/08-abr-2019/portugueses-deitam-fora-200-mil-toneladas-de-roupa-por-ano--10764484.html
 
-[2] The Portugal News (2019). Portuguese throw away 200,000 tons of clothing per year. Acedido em: 31/10/2020 em: https://www.theportugalnews.com/news/portuguese-throw-away-200000-tons-of-clothing-per-year/49026
+[2] Jornal de Negócios (2020). Lixo eletrônico atingiu valores recorde em 2019 e vai continuar a aumentar no mundo. Acedido em: 01/11/2020 em: https://www.jornaldenegocios.pt/sustentabilidade/detalhe/lixo-eletronico-atingiu-valores-recorde-em-2019-e-vai-continuar-a-aumentar-no-mundo
 
-[3] Carla Tomas, Expresso (2016). 230 toneladas de roupa vão para o lixo. Acedido em: 31/10/2020 em: https://www.publico.pt/2019/04/09/impar/noticia/portugal-deitase-lixo-200-mil-toneladas-roupa-ano-1868568
+[3] Minelgaitė, A., Liobikienė G.(2019). Waste problem in European Union and its influence on waste management behaviours. Science of The Total Environment, Volume 667, Pages 86-93. https://doi.org/10.1016/j.scitotenv.2019.02.313
 
-[4] Nicholas Gilmore, The Saturday Evening Post (2018). Ready-to-Waste: America’s Clothing Crisis. Acedido em: 31/10/2020 em: https://www.saturdayeveningpost.com/2018/01/ready-waste-americas-clothing-crisis/
+[4] Eurostat (2020). Waste electrical and electronic equipment (WEEE) by waste management operations. Acedido em: 31/10/2020 em: https://ec.europa.eu/eurostat/web/products-datasets/-/env_waselee
+
+[5] Lisboa Secreta (2018). Encontra borlas para ti ou doa o que já não usas!. Acedido em: 01/11/2020 em: https://lisboasecreta.co/freecycle/
