@@ -9,70 +9,118 @@
 
 ## Enquadramento:
 
-Com o intuito de diminuir o desperdício de bens de consumo, móveis, eletrônicos e muitos outro, iremos implementar uma plataforma de doações oferecendo uma forma fácil e intuitiva para os utilizadores anunciarem os produtos que não utilizam mais para doações. Assim evitamos o desperdício do produto além de ajudar alguém necessitado.
+Vivemos em um mundo onde as pessoas estão cada vez mais preocupadas em comprar o telemóvel do ano [3], comprar roupas que só vão usar uma ou duas vezes. Na maioria dos casos todos esses produtos acabam sendo descartados [4], mesmo estando em boas condições de utilização.
 
-Todos os anos milhares de toneladas de roupas[1], brinquedos, móveis, aparelhos eletrônicos[2] e eletrodomésticos são descartados de forma incorreta contribuindo para o aumento da poluição e desperdiçando uma enorme quantidade de matéria prima que foi utilizada durante a produção.
+Em Portugal são descartados de forma incorreta aproximadamente 200 mil toneladas de roupas todos os anos [1], a necessidade por estar sempre na moda faz pessoas comprarem diversas roupas novas ao longo do ano apenas para se manterem na moda. Em 2019 batemos recorde no lixo eletrônico gerado no mundo, foram cerca de 59 milhões de toneladas descartadas com previsão de atingir 81,5 milhões de toneladas em 2030 [2]. E não para por aí, além disso brinquedos, móveis, livros, cosméticos, e muitos outros bens de consumo são despojados aleatoriamente contribuindo para o aumento da poluição e desperdiçando uma enorme quantidade de matéria prima que foi utilizada durante a produção, sendo que para produzir apenas uma T-shirt de algodão são necessários aproximadamente 2700 litros de água ou até 10000 litros para a produção de uma calça de ganga [1].
 
-Vivemos em um mundo onde as pessoas estão cada vez mais preocupadas em comprar o telemóvel do ano[3], comprar roupas que só vão usar uma ou duas vezes, sendo que na maioria dos casos todos esses produtos acabam sendo descartados[4], mesmo estando em boas condições de funcionamento.
+Enquadrada no ODS 12 a nossa aplicação busca melhorar os padrões de consumo e diminuir a produção e desperdício desnecessária de bens de consumo, móveis, eletrônicos e muitos outro.
 
-A nossa plataforma pretende oferecer uma forma fácil e intuitiva para os utilizadores publicarem os produtos que não utilizam mais para doações. Assim podemos ajudar alguém necessitado e contribuir para diminuição do desperdício de produtos ainda em bom estado.
+Vamos implementar uma plataforma de doações oferecendo uma forma fácil e intuitiva para os utilizadores anunciarem os produtos que não utilizam mais para doações. Assim evitamos o desperdício do produto em boas condições além de ajudar alguém necessitado. Pretendemos oferecer uma forma fácil e intuitiva para os utilizadores publicarem anúncios separados por categorias, assim como pesquisar anúncios de outros utilizadores por categorias e localização. Assim podemos ajudar alguém necessitado e contribuir para diminuição do desperdício de produtos ainda em bom estado.
 
+A aplicação freecycle [5] oferece um serviço similar ao que queremos implementar, com a desvantagem das ofertas estarem separadas por grupos com base na região dificultando ao utilizador pesquisar anúncios em diversas regiões.
 
 **Produto similar:** https://www.freecycle.org/ [5]
 
+A Freecycle é uma plataforma para doações, sem fins lucrativos, que existe desde 2003 originalmente fundada no Arizona. Composta por grupos que se dividem por vários países. Nesses grupos pessoas podem publicar anúncios de objetos para doação. Os utilizadores podem trocar mensagens entre si através do anúncio, porém é necessário ser um membro do grupo em que o anúncio foi publicado, e por consequência estar logado.
+
+O funcionamento do Freecycle é muito similar ao nosso, porém ele apresenta alguns problemas que pretendemos corrigir em nosso projeto.
+A plataforma deles e pouco intuitiva, e não vai direto ao ponto. São necessário vários passos para ver os anúncios que lá estão publicado.
+
+A mensagens obrigam o utilizador a se tornar membro do grupo em  que o anúncio se encontra publicado, e isso é pouco prático. Ainda falando das mensagens, o seu funcionamento está mais algo como troca de "e-mails". E em nosso projeto o chat será em tempo real.
+
+A interface do Freecycle está completamente ultrapassada, e não há responsividade para utilização em telemóveis. Tornando-o pouco intuitivo e desagradavel para o uso.
+
+
+
 ## Casos de utilização:
 
-### Anuncio de produtos
+### Anunciar um produtos
 
 **Descrição:**
-Os utilizadores têm a possibilidade de anunciar produtos que querem doar no site.
+O utilizador cria um anúncio de um produto que deseja doar no site.
 
 **Pré-condições:**
 
-- Possuir um cadastro e estar logado
+1. Possuir um cadastro e estar logado na plataforma.
 
 **Passo a passo:**
 
-1. Na aplicação do utilizador terá a opção de anunciar produto.
-2. Inserir os dados do anúncio (nome, quantidade, estado, localização, descrição) e poderá optar por deixar alguma forma de contato (email, telefone ou mensagem no site ou na app).
+1. O utilizador seleciona a opção para publicar um anúncio.
+2. Inserir título, descrição e uma categoria, estes dados são obrigatórios. E opcional atribuir fotos, endereço e telefone para contacto.
+3. O utilizador confirma e faz a submissão do anúncio.
+4. Uma mensagem de confirmação é retornada para o utilizador.
 
 **Pós-condições:**
+
+1. Após a submissão do anúncio, os dados passam por uma validação.
+2. Se a validação for negativa, uma mensagem é exibida ao utilizador informando o problema.
+3. Se a validação for positiva, o anúncio e gravado na base dados.
+
+### Pesquisar um anúncio
+
+**Descrição:**
+
+Pesquisar por anúncios mais específicos.
+
+**Pré-condições:**
 NA
 
-### Pesquisa de anúncios
-
-**Descrição:**
-Os utilizadores têm a possibilidade de pesquisar os anúncios disponíveis no site. Os dados para contato só estarão disponíveis para usuários logados no site.
-
-**Pré-condições:**
-NA
-
 **Passo a passo:**
 
-1. Na página inicial terá um campo onde o utilizador poderá pesquisar os produtos pelo nome.
-1. O utilizador terá a opção de filtrar a busca pelo distrito.
+1. Ao selecionar a opção de pesquisa, será listado anúncios cujo o título está relacionado ao texto pesquisado.
+1. O resultado para cada anúncio encontrado: foto se houver, título, tipo de anúncio e data de publicação.
+1. Há opções de filtro: local, categoria, data de publicação, e ordenação.
+1. Um anúncio de interesse pode ser salvo como favorito.
 
 **Pós-condições:**
 
-- O utilizador terá a opção de salvar os anúncios na "Lista de desejos".
+1. Um anúncio salvo como favorito, e armazenado na base de dados.
+2. O texto utilizado para pesquisa também é armazenado na base de dados.
+3. Se o anúncio pesquisado for aberto, o número de visualizações do anúncio é incrementado e atualizado na base de dados.
 
-### Enviar mensagem ao anunciante
+### Contacto entre utilizadores
 
 **Descrição:**
-Os utilizadores terão a opção de enviar mensagem ao anunciante do produto.
+Utilizadores podem trocar mensagens entre si pela plataforma através do anúncio.
 
 **Pré-condições:**
 
-- Possuir um cadastro e estar logado
+1. Possuir um cadastro e estar logado na plataforma.
+2. Estar na página do anúncio.
 
 **Passo a passo:**
 
-1. Na página do anúncio o utilizador clica no botão "Enviar Mensagem".
-2. Poderá colocar um título, a mensagem e outras opções de contato para enviar ao anunciante.
+1. Na página do anúncio o utilizador pode enviar uma mensagem diretamente ao anunciante através da plataforma.
+2. Ao selecionar a opção para "enviar mensagem", o utilizador pode escrever uma mensagem para o anunciante. E o chat é iniciado entre ambos através do anúncio.
+3. O anunciante recebe a mensagem e pode enviar a resposta.
+4. A confirmação de recebimento das mensagens enviadas é retornada.
+5. O utilizador pode entrar em contacto por telefone se houver um atribuído ao anúncio.
 
 **Pós-condições:**
 
-- O anunciante pode responder as mensagens recebidas
+1. As mensagens trocadas são armazenadas na base de dados.
+
+### Encerrar um anuncio
+
+**Descrição:**
+Após a doação de um produto ser concluída, o anúncio pode ser encerrado.
+
+**Pré-condições:**
+
+1. Possuir um cadastro e estar logado na plataforma.
+2. Ser dono do anúncio.
+3. Estar na página do anúncio.
+
+**Passo a passo:**
+
+1. Selecionar a opção para encerrar o anúncio.
+2. Confirmar o encerramento do anúncio.
+3. O anúncio é finalizado e não será mais exibido para outros utilizadores.
+4. Anúncios encerrados poderão ser acedido pelos donos dos anúncios, na página de "anúncios encerrados".
+
+**Pós-condições:**
+
+1. O anúncio finalizado terá seu status atualizado na base de dados.
 
 ## Referências:
 
