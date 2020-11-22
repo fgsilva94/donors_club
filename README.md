@@ -17,13 +17,12 @@ Enquadrada no ODS 12 a nossa aplicação busca melhorar os padrões de consumo e
 
 Vamos implementar uma plataforma de doações oferecendo uma forma fácil e intuitiva para os utilizadores anunciarem os produtos que não utilizam mais para doações. Assim evitamos o desperdício do produto em boas condições além de ajudar alguém necessitado. Pretendemos oferecer uma forma fácil e intuitiva para os utilizadores publicarem anúncios separados por categorias, assim como pesquisar anúncios de outros utilizadores por categorias e localização. Assim podemos ajudar alguém necessitado e contribuir para diminuição do desperdício de produtos ainda em bom estado.
 
-A aplicação freecycle [5] oferece um serviço similar ao que queremos implementar, com a desvantagem das ofertas estarem separadas por grupos com base na região dificultando ao utilizador pesquisar anúncios em diversas regiões.
-
 **Produto similar:** https://www.freecycle.org/ [5]
 
 A Freecycle é uma plataforma para doações, sem fins lucrativos, que existe desde 2003 originalmente fundada no Arizona. Composta por grupos que se dividem por vários países. Nesses grupos pessoas podem publicar anúncios de objetos para doação. Os utilizadores podem trocar mensagens entre si através do anúncio, porém é necessário ser um membro do grupo em que o anúncio foi publicado, e por consequência estar logado.
 
 O funcionamento do Freecycle é muito similar ao nosso, porém ele apresenta alguns problemas que pretendemos corrigir em nosso projeto.
+
 A plataforma deles e pouco intuitiva, e não vai direto ao ponto. São necessário vários passos para ver os anúncios que lá estão publicado.
 
 A mensagens obrigam o utilizador a se tornar membro do grupo em  que o anúncio se encontra publicado, e isso é pouco prático. Ainda falando das mensagens, o seu funcionamento está mais algo como troca de "e-mails". E em nosso projeto o chat será em tempo real.
