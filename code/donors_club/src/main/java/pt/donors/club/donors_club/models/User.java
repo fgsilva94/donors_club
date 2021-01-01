@@ -10,43 +10,54 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
+  @Column(name = "usr_id")
   private Long id;
 
-  @Column(name = "user_name")
+  @Column(name = "usr_name")
   private String name;
 
-  @Column(name = "user_email")
+  @Column(name = "usr_email")
   private String email;
 
-  @Column(name = "user_phone_number")
+  @Column(name = "usr_phone_number")
   private String phoneNumber;
 
-  @Column(name = "user_password")
+  @Column(name = "usr_password")
   private String password;
 
-  @Column(name = "user_address")
+  @Column(name = "usr_address")
   private String address;
 
-  @Column(name = "user_active")
+  @Column(name = "usr_active")
   private boolean active;
 
   @OneToMany
-  @JoinColumn(name = "ad_user_id")
-  @JsonIgnoreProperties("author")
+  @JoinColumn(name = "ad_owner_id")
+  @JsonIgnoreProperties("owner")
   private List<Ad> ads = new ArrayList<>();
+
+  @OneToMany
+  @JoinColumns(@JoinColumn(name = "chat_customer_id"))
+  // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
+  private List<Chat> customerChats = new ArrayList<>();
+
+  @OneToMany
+  @JoinColumns(@JoinColumn(name = "chat_ad_owner_id"))
+  // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
+  private List<Chat> ownerChats = new ArrayList<>();
 
   // private List<Ad> favorites = new ArrayList<>();
 
@@ -117,6 +128,14 @@ public class User implements Serializable {
 
   public List<Ad> getAds() {
     return ads;
+  }
+
+  @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
+  public List<Chat> getChats() {
+    List<Chat> chats = new ArrayList<>();
+    chats.addAll(customerChats);
+    chats.addAll(ownerChats);
+    return chats;
   }
 
   /*

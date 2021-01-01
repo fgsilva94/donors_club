@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "ads")
 public class Ad implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -38,21 +40,21 @@ public class Ad implements Serializable {
   private boolean active;
 
   @ManyToOne
-  @JoinColumn(name = "ad_user_id")
+  @JoinColumn(name = "ad_owner_id")
   @JsonIgnoreProperties("ads")
-  private User author;
+  private User owner;
 
   public Ad() {
   }
 
-  public Ad(Long id, String title, String description, String category, User author) {
+  public Ad(Long id, String title, String description, String category, User owner) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.category = category;
     publicationDate = LocalDate.now();
     active = true;
-    this.author = author;
+    this.owner = owner;
   }
 
   public Long getId() {
@@ -95,8 +97,8 @@ public class Ad implements Serializable {
     active = false;
   }
 
-  public User getAuthor() {
-    return author;
+  public User getOwner() {
+    return owner;
   }
 
   @Override
