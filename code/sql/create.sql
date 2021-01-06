@@ -61,5 +61,5 @@ alter table messages add constraint messages_fk_users
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table messages add constraint messages_fk_chats
-            foreign key (msg_chat_id) references chat(chat_id) 
+            foreign key (msg_chat_id) references chats(chat_id) 
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
