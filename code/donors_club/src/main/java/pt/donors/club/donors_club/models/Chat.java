@@ -1,7 +1,6 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,7 +37,7 @@ public class Chat implements Serializable {
 
   @OneToMany
   @JoinColumn(name = "msg_chat_id")
-  private List<Message> messages = new ArrayList<>();
+  private List<Message> messages;
 
   @Column(name = "chat_active")
   private boolean active;

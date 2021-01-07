@@ -47,19 +47,19 @@ public class User implements Serializable {
   @OneToMany
   @JoinColumn(name = "ad_owner_id")
   @JsonIgnoreProperties("owner")
-  private List<Ad> ads = new ArrayList<>();
+  private List<Ad> ads;
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "chat_customer_id"))
   // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
-  private List<Chat> customerChats = new ArrayList<>();
+  private List<Chat> customerChats;
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "chat_ad_owner_id"))
   // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
-  private List<Chat> ownerChats = new ArrayList<>();
+  private List<Chat> ownerChats;
 
-  // private List<Ad> favorites = new ArrayList<>();
+  // private List<Ad> favorites;
 
   public User() {
   }
