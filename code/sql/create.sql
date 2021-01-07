@@ -52,10 +52,6 @@ alter table chats add constraint chats_fk_users_customer
             foreign key (chat_customer_id) references users(usr_id) 
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-alter table chats add constraint chats_fk_users
-            foreign key (chat_id) references users(usr_id) 
-			ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 alter table messages add constraint messages_fk_users
             foreign key (msg_sender_id) references users(usr_id) 
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
