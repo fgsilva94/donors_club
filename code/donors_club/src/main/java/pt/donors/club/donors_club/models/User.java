@@ -55,24 +55,25 @@ public class User implements Serializable {
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "chat_ad_id"))
-  @JsonIgnoreProperties({ "owner", "user"})
+  @JsonIgnoreProperties({ "owner", "user" })
   private List<Chat> chats;
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "wl_usr_id"))
-  @JsonIgnoreProperties({ "user", "adPost"})
+  @JsonIgnoreProperties({ "user", "adPost" })
   private List<WishList> wishLists;
 
   public User() {
   }
 
-  public User(int id, String name, String email, String phoneNumber, String password, String street) {
+  public User(int id, String name, String email, String phoneNumber, String password, String street, City city) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.password = password;
     this.street = street;
+    this.city = city;
     active = true;
   }
 
@@ -111,7 +112,7 @@ public class User implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
-  
+
   public String getStreet() {
     return street;
   }

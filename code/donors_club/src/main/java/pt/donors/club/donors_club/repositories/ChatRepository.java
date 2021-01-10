@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import pt.donors.club.donors_club.models.Chat;
 
-public interface ChatRepository extends CrudRepository<Chat, Long> {
+public interface ChatRepository extends CrudRepository<Chat, Integer> {
 }
