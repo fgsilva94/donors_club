@@ -30,7 +30,8 @@ public class AdPost implements Serializable {
   @Column(name = "ad_description")
   private String description;
 
-  @Column(name = "ad_subcategory_id")
+  @ManyToOne
+  @JoinColumn(name = "ad_subcategory_id")
   private Subcategory category;
 
   @Column(name = "ad_pub_date")
@@ -41,7 +42,7 @@ public class AdPost implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnoreProperties("ads")
+  @JsonIgnoreProperties({"ads"})
   private User owner;
 
   public AdPost() {
