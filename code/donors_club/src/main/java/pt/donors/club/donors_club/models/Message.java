@@ -23,13 +23,13 @@ public class Message implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "msg_id")
-  private Long id;
+  private int id;
 
-  @Column(name = "msg_content")
-  private String content;
+  @Column(name = "msg_text")
+  private String text;
 
-  @Column(name = "msg_date")
-  private LocalDate date;
+  @Column(name = "msg_time")
+  private LocalDate time;
 
   @ManyToOne
   @JoinColumn(name = "msg_chat_id")
@@ -44,24 +44,24 @@ public class Message implements Serializable {
   public Message() {
   }
 
-  public Message(Long id, String content, LocalDate date, Chat chat, User sender) {
+  public Message(int id, String text, LocalDate time, Chat chat, User sender) {
     this.id = id;
-    this.content = content;
-    this.date = date;
+    this.text = text;
+    this.time = time;
     this.chat = chat;
     this.sender = sender;
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public String getContent() {
-    return content;
+  public String getText() {
+    return text;
   }
 
-  public LocalDate getDate() {
-    return date;
+  public LocalDate getTime() {
+    return time;
   }
 
   public Chat getChat() {
@@ -70,30 +70,5 @@ public class Message implements Serializable {
 
   public User getSender() {
     return sender;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Message other = (Message) obj;
-    if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    return true;
   }
 }

@@ -1,7 +1,6 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +24,7 @@ public class User implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "usr_id")
-  private Long id;
+  private int id;
 
   @Column(name = "usr_name")
   private String name;
@@ -38,8 +38,12 @@ public class User implements Serializable {
   @Column(name = "usr_password")
   private String password;
 
-  @Column(name = "usr_address")
-  private String address;
+  @Column(name = "usr_street")
+  private String street;
+
+  @ManyToOne
+  @JoinColumn(name = "usr_city_id")
+  private City city;
 
   @Column(name = "usr_active")
   private boolean active;
@@ -47,34 +51,32 @@ public class User implements Serializable {
   @OneToMany
   @JoinColumn(name = "ad_owner_id")
   @JsonIgnoreProperties("owner")
-  private List<Ad> ads;
+  private List<AdPost> ads;
 
   @OneToMany
-  @JoinColumns(@JoinColumn(name = "chat_customer_id"))
-  // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
-  private List<Chat> customerChats;
+  @JoinColumns(@JoinColumn(name = "chat_ad_id"))
+  @JsonIgnoreProperties({ "owner", "user"})
+  private List<Chat> chats;
 
   @OneToMany
-  @JoinColumns(@JoinColumn(name = "chat_ad_owner_id"))
-  // @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
-  private List<Chat> ownerChats;
-
-  // private List<Ad> favorites;
+  @JoinColumns(@JoinColumn(name = "wl_usr_id"))
+  @JsonIgnoreProperties({ "user", "adPost"})
+  private List<WishList> wishLists;
 
   public User() {
   }
 
-  public User(Long id, String name, String email, String phoneNumber, String password, String address) {
+  public User(int id, String name, String email, String phoneNumber, String password, String street) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.password = password;
-    this.address = address;
+    this.street = street;
     active = true;
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
@@ -109,13 +111,25 @@ public class User implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
-
-  public String getAddress() {
-    return address;
+  
+  public String getStreet() {
+    return street;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public void setStreet(String street) {
+    this.street = street;
+  }
+
+  public City getCity() {
+    return city;
+  }
+
+  public void setCity(City city) {
+    this.city = city;
+  }
+
+  public String getAddress() {
+    return street + " " + city.getName();
   }
 
   public boolean isActive() {
@@ -126,19 +140,15 @@ public class User implements Serializable {
     active = false;
   }
 
-  public List<Ad> getAds() {
+  public List<AdPost> getAds() {
     return ads;
   }
 
-  @JsonIgnoreProperties({ "customer", "adOwner", "ad" })
   public List<Chat> getChats() {
-    List<Chat> chats = new ArrayList<>();
-    chats.addAll(customerChats);
-    chats.addAll(ownerChats);
     return chats;
   }
 
-  /*
-   * public List<Ad> getFavorites() { return favorites; }
-   */
+  public List<WishList> getWishLists() {
+    return wishLists;
+  }
 }

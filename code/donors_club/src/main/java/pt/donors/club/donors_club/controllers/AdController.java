@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.donors.club.donors_club.models.Ad;
-import pt.donors.club.donors_club.repositories.AdRepository;
+import pt.donors.club.donors_club.models.AdPost;
+import pt.donors.club.donors_club.repositories.AdPostRepository;
 
 @RestController
 @RequestMapping(path = "/api/ads")
 public class AdController {
 
   @Autowired
-  private AdRepository adRepository;
+  private AdPostRepository adRepository;
 
   @GetMapping
-  public ResponseEntity<Iterable<Ad>> getAds() {
+  public ResponseEntity<Iterable<AdPost>> getAds() {
     return ResponseEntity.ok().body(adRepository.findAll());
   }
 }

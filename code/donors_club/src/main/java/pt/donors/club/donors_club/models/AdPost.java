@@ -15,14 +15,14 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "ads")
-public class Ad implements Serializable {
+@Table(name = "adposts")
+public class AdPost implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ad_id")
-  private Long id;
+  private int id;
 
   @Column(name = "ad_title")
   private String title;
@@ -30,10 +30,10 @@ public class Ad implements Serializable {
   @Column(name = "ad_description")
   private String description;
 
-  @Column(name = "ad_category")
-  private String category;
+  @Column(name = "ad_subcategory_id")
+  private Subcategory category;
 
-  @Column(name = "ad_publication_date")
+  @Column(name = "ad_pub_date")
   private LocalDate publicationDate;
 
   @Column(name = "ad_active")
@@ -44,10 +44,10 @@ public class Ad implements Serializable {
   @JsonIgnoreProperties("ads")
   private User owner;
 
-  public Ad() {
+  public AdPost() {
   }
 
-  public Ad(Long id, String title, String description, String category, User owner) {
+  public AdPost(int id, String title, String description, Subcategory category, User owner) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -57,7 +57,7 @@ public class Ad implements Serializable {
     this.owner = owner;
   }
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
@@ -77,11 +77,11 @@ public class Ad implements Serializable {
     this.description = description;
   }
 
-  public String getCategory() {
+  public Subcategory getCategory() {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(Subcategory category) {
     this.category = category;
   }
 
@@ -99,30 +99,5 @@ public class Ad implements Serializable {
 
   public User getOwner() {
     return owner;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Ad other = (Ad) obj;
-    if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    return true;
   }
 }
