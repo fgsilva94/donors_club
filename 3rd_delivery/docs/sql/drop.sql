@@ -1,0 +1,1 @@
+drop database donors_club;
