@@ -7,6 +7,6 @@ import pt.donors.club.donors_club.models.AdPost;
 import pt.donors.club.donors_club.models.View.AdPostSimpleView;
 
 public interface AdPostRepository extends CrudRepository<AdPost, Integer> {
-  @Query(value = "SELECT ad_id as adPostId, ad_title as adPostTitle FROM adposts", nativeQuery = true)
+  @Query(value = "SELECT ad_id as id, ad_title as title FROM adposts", nativeQuery = true)
   Iterable<AdPostSimpleView> findAllSimpleView();
 }

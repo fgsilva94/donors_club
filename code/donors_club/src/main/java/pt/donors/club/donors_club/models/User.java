@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -36,6 +36,7 @@ public class User implements Serializable {
   private String phoneNumber;
 
   @Column(name = "usr_password")
+  @JsonIgnore
   private String password;
 
   @Column(name = "usr_street")
@@ -46,21 +47,22 @@ public class User implements Serializable {
   private City city;
 
   @Column(name = "usr_active")
+  @JsonIgnore
   private boolean active;
 
   @OneToMany
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnoreProperties("owner")
+  @JsonIgnore
   private List<AdPost> ads;
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "chat_ad_id"))
-  @JsonIgnoreProperties({ "owner", "user" })
+  @JsonIgnore
   private List<Chat> chats;
 
   @OneToMany
   @JoinColumns(@JoinColumn(name = "wl_usr_id"))
-  @JsonIgnoreProperties({ "user", "adPost" })
+  @JsonIgnore
   private List<WishList> wishLists;
 
   public User() {
@@ -127,10 +129,6 @@ public class User implements Serializable {
 
   public void setCity(City city) {
     this.city = city;
-  }
-
-  public String getAddress() {
-    return street + " " + city.getName();
   }
 
   public boolean isActive() {

@@ -10,41 +10,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "cities")
 public class City implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id")
-    private int id;
+  private static final long serialVersionUID = 1L;
 
-    @Column(name = "city_name")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "city_id")
+  private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "city_dis_id")
-    private District district;
+  @Column(name = "city_name")
+  private String name;
 
-    public City() {}
+  @ManyToOne
+  @JoinColumn(name = "city_dis_id")
+  private District district;
 
-    public City(int id, String name, District district) {
-        this.id = id;
-        this.name = name;
-        this.district = district;
-    }
+  public City() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public City(int id, String name, District district) {
+    this.id = id;
+    this.name = name;
+    this.district = district;
+  }
 
-    public String getName() {
-        return name + ", " + district.getName();
-    }
+  public int getId() {
+    return id;
+  }
 
-    public District getDistrict() {
-        return district;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public District getDistrict() {
+    return district;
+  }
 }

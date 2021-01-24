@@ -1,7 +1,7 @@
 package pt.donors.club.donors_club.models.View;
 
 public interface UserLoginView {
-  int getUserId();
+  int getId();
 
-  String getUserName();
+  String getName();
 }
