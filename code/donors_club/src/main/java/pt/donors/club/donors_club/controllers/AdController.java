@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,20 +22,21 @@ public class AdController {
   @Autowired
   private AdPostRepository adRepository;
 
-  @GetMapping
-  public ResponseEntity<Iterable<AdPostSimpleView>> simpleAds() {
-    return ResponseEntity.ok().body(adRepository.findAllSimpleView());
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<AdPostSimpleView> simpleAds() {
+    return adRepository.findAllSimpleView();
   }
 
-  @GetMapping(path = "/{id:[0-9]+}")
-  public ResponseEntity<AdPost> getAdPost(@PathVariable int id) {
+  @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public AdPost getAdPost(@PathVariable int id) {
     Optional<AdPost> ad = adRepository.findById(id);
 
-    return ResponseEntity.ok().body(ad.get());
+    return ad.get();
   }
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public AdPost addUser(@RequestBody AdPost ad) {
-    return adRepository.save(ad);
+    AdPost newAd = new AdPost(0, ad.getTitle(), ad.getDescription(), ad.getCategory(), ad.getOwner());
+    return adRepository.save(newAd);
   }
 }

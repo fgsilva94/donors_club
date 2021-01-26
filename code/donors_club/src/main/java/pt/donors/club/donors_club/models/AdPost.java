@@ -1,7 +1,7 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "adposts")
@@ -35,14 +33,13 @@ public class AdPost implements Serializable {
   private Subcategory category;
 
   @Column(name = "ad_pub_date")
-  private LocalDate publicationDate;
+  private LocalDateTime publicationDate;
 
   @Column(name = "ad_active")
   private boolean active;
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnore
   private User owner;
 
   public AdPost() {
@@ -53,7 +50,7 @@ public class AdPost implements Serializable {
     this.title = title;
     this.description = description;
     this.category = category;
-    publicationDate = LocalDate.now();
+    publicationDate = LocalDateTime.now();
     active = true;
     this.owner = owner;
   }
@@ -84,10 +81,6 @@ public class AdPost implements Serializable {
 
   public void setCategory(Subcategory category) {
     this.category = category;
-  }
-
-  public LocalDate getPublicationDate() {
-    return publicationDate;
   }
 
   public boolean isActive() {

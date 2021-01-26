@@ -1,7 +1,8 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,57 +15,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "wishlist")
 public class WishList implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wl_id")
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "wl_id")
+  private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "wl_usr_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "wl_usr_id")
+  private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "wl_ad_id")
-    private AdPost adPost;
+  @ManyToOne
+  @JoinColumn(name = "wl_ad_id")
+  private AdPost adPost;
 
-    @Column(name = "wl_date")
-    private LocalDate date;
+  @Column(name = "wl_date")
+  private LocalDateTime date;
 
-    @Column(name = "wl_active")
-    private boolean active;
+  @Column(name = "wl_active")
+  private boolean active;
 
-    public WishList() {}
+  public WishList() {
+  }
 
-    public WishList(int id, User user, AdPost adPost, LocalDate date) {
-        this.id = id;
-        this.user = user;
-        this.adPost = adPost;
-        this.date = date;
-        this.active = true;
-    }
-    
-    public int getId() {
-        return id;
-    }
-    public User getUser() {
-        return user;
-    }
+  public WishList(int id, User user, AdPost adPost) {
+    this.id = id;
+    this.user = user;
+    this.adPost = adPost;
+    date = LocalDateTime.now();
+    this.active = true;
+  }
 
-    public AdPost getAdPost() {
-        return adPost;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public LocalDate getDate() {
-        return date;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public boolean isActive() {
-        return active;
-    }
+  public AdPost getAdPost() {
+    return adPost;
+  }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+  public LocalDateTime getDate() {
+    return date;
+  }
+
+  public boolean isActive() {
+    return active;
+  }
+
+  public void deactivate() {
+    active = false;
+  }
 }

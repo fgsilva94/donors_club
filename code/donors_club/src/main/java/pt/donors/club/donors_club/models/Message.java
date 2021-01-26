@@ -1,7 +1,7 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Message implements Serializable {
   private String text;
 
   @Column(name = "msg_time")
-  private LocalDate time;
+  private LocalDateTime time;
 
   @ManyToOne
   @JoinColumn(name = "msg_chat_id")
@@ -44,10 +44,10 @@ public class Message implements Serializable {
   public Message() {
   }
 
-  public Message(int id, String text, LocalDate time, Chat chat, User sender) {
+  public Message(int id, String text, Chat chat, User sender) {
     this.id = id;
     this.text = text;
-    this.time = time;
+    time = LocalDateTime.now();
     this.chat = chat;
     this.sender = sender;
   }
@@ -60,7 +60,7 @@ public class Message implements Serializable {
     return text;
   }
 
-  public LocalDate getTime() {
+  public LocalDateTime getTime() {
     return time;
   }
 

@@ -1,1 +1,27 @@
 https://docs.google.com/document/d/1Z9R1dp-JAy7koYkTKtaDxfYzHZu_Bv2ZA2Bvnc6xIbw/edit?usp=sharing
+
+post user
+
+{
+    "name": "Felipe Silva",
+    "email": "felipe123@test.com",
+    "phoneNumber": "26471232",
+    "password": "1123462345",
+    "street": "Rua 666",
+    "city": {
+        "id": 154
+    }
+}
+
+post ad
+
+{
+    "title": "roupas para bebe",
+    "description": "roubas para bebe de ate um ano",
+    "category": {
+        "id": 1
+    },
+    "owner": {
+        "id": 4
+    }
+}

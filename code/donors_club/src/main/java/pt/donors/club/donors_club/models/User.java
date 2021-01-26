@@ -36,7 +36,6 @@ public class User implements Serializable {
   private String phoneNumber;
 
   @Column(name = "usr_password")
-  @JsonIgnore
   private String password;
 
   @Column(name = "usr_street")
@@ -105,10 +104,6 @@ public class User implements Serializable {
 
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
-  }
-
-  public String getPassword() {
-    return password;
   }
 
   public void setPassword(String password) {

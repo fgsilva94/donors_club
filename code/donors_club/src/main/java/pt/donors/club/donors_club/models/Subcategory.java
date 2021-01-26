@@ -14,37 +14,38 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "subcategories")
 public class Subcategory implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "subc_id")
-    private int id;
-    
-    @Column(name = "subc_name")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "subc_id")
+  private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "subc_cat_id")
-    private Category category;
+  @Column(name = "subc_name")
+  private String name;
 
-    public Subcategory() {}
+  @ManyToOne
+  @JoinColumn(name = "subc_cat_id")
+  private Category category;
 
-    public Subcategory(int id, String name, Category category) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-    }
+  public Subcategory() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Subcategory(int id, String name, Category category) {
+    this.id = id;
+    this.name = name;
+    this.category = category;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  public String getName() {
+    return name;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
 }
