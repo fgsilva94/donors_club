@@ -104,3 +104,8 @@ alter table subcategories add constraint subcategories_fk_categories
 alter table cities add constraint cities_fk_districts
             foreign key (city_dis_id) references districts(dis_id) 
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Uniques
+alter table users add constraint uc_users unique (usr_email);
+
+alter table chats add constraint uc_chats unique (chat_ad_id, chat_usr_id);

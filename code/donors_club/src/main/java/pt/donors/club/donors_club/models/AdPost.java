@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "adposts")
 public class AdPost implements Serializable {
@@ -36,10 +39,12 @@ public class AdPost implements Serializable {
   private LocalDateTime publicationDate;
 
   @Column(name = "ad_active")
+  @JsonIgnore
   private boolean active;
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
+  @JsonIgnoreProperties({"email", "street", "active"})
   private User owner;
 
   public AdPost() {

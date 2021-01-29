@@ -336,6 +336,7 @@ insert into categories (cat_name) values ("Eletrónicos");
 insert into categories (cat_name) values ("Moveis");
 insert into categories (cat_name) values ("Papelaria");
 insert into categories (cat_name) values ("Reformas");
+insert into categories (cat_name) values ("Jardim");
 
 insert into subcategories (subc_name, subc_cat_id) values ("Roupas", 1);
 insert into subcategories (subc_name, subc_cat_id) values ("Calcados", 1);
@@ -345,6 +346,8 @@ insert into subcategories (subc_name, subc_cat_id) values ("Escritorio", 4);
 insert into subcategories (subc_name, subc_cat_id) values ("Material de Construcao", 6);
 insert into subcategories (subc_name, subc_cat_id) values ("Informatica", 3);
 insert into subcategories (subc_name, subc_cat_id) values ("Escolar", 5);
+insert into subcategories (subc_name, subc_cat_id) values ("Ferramentas", 6);
+insert into subcategories (subc_name, subc_cat_id) values ("Plastas", 6);
 
 insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Joao", "joao@test.com", "264745562", "7wT5sbobQKTYpr", "Rua 1", 154,true);
 insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Pedro", "pedro@test.com", "110044159", "qATnbUqyfQsMm6", "Rua 2", 154,true);
@@ -356,17 +359,48 @@ insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_stre
 insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Tiago", "tiago@test.com", "714008913", "7Kx9fdi5dNJj6a", "Rua 8", 160,true);
 insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Helem", "helem@test.com", "484670977", "2ZnVF7pHo66jxD", "Rua 9", 154,true);
 
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Mochila", "Mochila escolar", 8, "2021-01-06", true, 2);
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Sapato", "Sapado social bom estado", 2, "2021-01-04", true, 1);
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Jaqueta", "Jaqueta usada", 1, "2021-01-01", true, 5);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Telemovel", "Telemovel ainda usavel", 3, "2021-01-01", true, 1);
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Calculadora grafica", "Estou a doar porque nao uso", 8, "2021-01-03", true, 2);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Jaqueta", "Jaqueta usada", 1, "2021-01-01", true, 5);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Sofa 2 lugares", "Sofa em bom estado para precisa", 5, "2021-01-02", true, 3);
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
-insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Livros", "tenho varios para doar", 8, "2021-01-04", true, 2);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Tenis nike", "Esta quase novo, nao uso", 2, "2021-01-02", true, 4);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Radio", "Esta a juntar poeira", 4, "2021-01-03", true, 1);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Calculadora grafica", "Estou a doar porque nao uso", 8, "2021-01-03", true, 2);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Sapato", "Sapado social bom estado", 2, "2021-01-04", true, 1);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Tinta cor branca", "Para quem precisar", 6, "2021-01-04", true, 3);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Livros", "tenho varios para doar", 8, "2021-01-04", true, 2);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Mochila", "Mochila escolar", 8, "2021-01-06", true, 2);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
+insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Rato computador", "Nao uso", 7, "2021-01-06", true, 6);
 
 insert into chats (chat_ad_id, chat_usr_id, chat_active, chat_date) values (6, 4, true, "2020-01-03");
 insert into chats (chat_ad_id, chat_usr_id, chat_active, chat_date) values (1, 7, true, "2020-01-06");
@@ -387,3 +421,5 @@ insert into wishlist (wl_usr_id, wl_ad_id, wl_date, wl_active) values (4, 6, "20
 insert into wishlist (wl_usr_id, wl_ad_id, wl_date, wl_active) values (7, 1, "2020-01-06", true);
 insert into wishlist (wl_usr_id, wl_ad_id, wl_date, wl_active) values (9, 5, "2020-01-06", true);
 insert into wishlist (wl_usr_id, wl_ad_id, wl_date, wl_active) values (8, 10, "2020-01-06", true);
+
+commit;

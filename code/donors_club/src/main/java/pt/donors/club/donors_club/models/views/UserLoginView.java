@@ -1,4 +1,4 @@
-package pt.donors.club.donors_club.models.View;
+package pt.donors.club.donors_club.models.views;
 
 public interface UserLoginView {
   int getId();
