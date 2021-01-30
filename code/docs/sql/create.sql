@@ -5,9 +5,7 @@ use donors_club;
 create table users (usr_id int not null auto_increment,
 						usr_name varchar(60) not null,
 						usr_email varchar(60) not null,
-						usr_phone_number varchar(20) not null,
 						usr_password varchar(30) not null,
-						usr_street varchar(60) not null,
 						usr_city_id int not null,
 						usr_active boolean default true,
 						primary key (usr_id));

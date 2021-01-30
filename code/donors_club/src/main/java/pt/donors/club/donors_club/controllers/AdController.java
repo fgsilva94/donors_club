@@ -53,14 +53,13 @@ public class AdController {
   public Iterable<AdPostSearchView> searchUnits(@RequestParam(value = "title", defaultValue = "") String title,
       @RequestParam(value = "category", defaultValue = "") String category,
       @RequestParam(value = "city", defaultValue = "") String city) {
-        logger.info("Finding by title: " + title + " and by city: " + city + " and category: " + category);
+    logger.info("Finding by title: " + title + " and by city: " + city + " and category: " + category);
 
     return adRepository.findByTitleAndByCategoryAndByCityContaining(title, category, city);
   }
 
   @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
   public AdPost addUser(@RequestBody AdPost ad) {
-    AdPost newAd = new AdPost(0, ad.getTitle(), ad.getDescription(), ad.getCategory(), ad.getOwner());
-    return adRepository.save(newAd);
+    return adRepository.save(ad);
   }
 }

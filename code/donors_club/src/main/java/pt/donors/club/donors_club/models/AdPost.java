@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "adposts")
 public class AdPost implements Serializable {
@@ -36,6 +38,7 @@ public class AdPost implements Serializable {
   private Subcategory category;
 
   @Column(name = "ad_pub_date")
+  @DateTimeFormat(pattern = "E MMM dd yyyy HH:mm:ss 'GMT'Z")
   private LocalDateTime publicationDate;
 
   @Column(name = "ad_active")
@@ -44,18 +47,19 @@ public class AdPost implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnoreProperties({"email", "street", "active"})
+  @JsonIgnoreProperties({ "email", "street", "active" })
   private User owner;
 
   public AdPost() {
   }
 
-  public AdPost(int id, String title, String description, Subcategory category, User owner) {
+  public AdPost(int id, String title, String description, Subcategory category, LocalDateTime publicationDate,
+      User owner) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.category = category;
-    publicationDate = LocalDateTime.now();
+    this.publicationDate = publicationDate;
     active = true;
     this.owner = owner;
   }
@@ -86,6 +90,10 @@ public class AdPost implements Serializable {
 
   public void setCategory(Subcategory category) {
     this.category = category;
+  }
+
+  public LocalDateTime getPublicationDate() {
+    return publicationDate;
   }
 
   public boolean isActive() {

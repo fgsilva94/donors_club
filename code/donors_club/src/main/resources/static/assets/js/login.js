@@ -6,24 +6,24 @@ const submitBtn = getElement("#submit");
 const result = getElement(".result");
 
 submitBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let user;
-    try {
-        if (email.value && password.value) {
-            user = await $.ajax({
-                url: `/api/users/${email.value}/${password.value}/`,
-                method: "get",
-                dataType: "json",
-            });
-        }
-    } catch (error) { }
+  let user;
+  try {
+    if (email.value && password.value) {
+      user = await $.ajax({
+        url: `/api/users/${email.value}/${password.value}/`,
+        method: "get",
+        dataType: "json",
+      });
 
-    if (!user) {
-        result.innerHTML = `email or password invalid`;
+      setStorageItem("userId", user.id);
+      setStorageItem("userName", user.name);
+      location.replace("./index.html");
     } else {
-        result.innerHTML = `Welcome ${user.name}`;
-        setStorageItem("userId", user.id);
-        setStorageItem("userName", user.name);
+      result.innerHTML = `email or password is empty`;
     }
+  } catch (error) {
+    result.innerHTML = `email or password is invalid`;
+  }
 });

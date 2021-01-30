@@ -349,15 +349,15 @@ insert into subcategories (subc_name, subc_cat_id) values ("Escolar", 5);
 insert into subcategories (subc_name, subc_cat_id) values ("Ferramentas", 6);
 insert into subcategories (subc_name, subc_cat_id) values ("Plastas", 6);
 
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Joao", "joao@test.com", "264745562", "7wT5sbobQKTYpr", "Rua 1", 154,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Pedro", "pedro@test.com", "110044159", "qATnbUqyfQsMm6", "Rua 2", 154,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Marcos", "marcos@test.com", "616049269", "8j2uRwsuWqSau4", "Rua 3", 158,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Felipe", "felipe@test.com", "807309431", "rCvPzrRu6rrFyb", "Rua 4", 154,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Ana", "ana@test.com", "231330844", "Mh5NPC3Ck7FpmC", "Rua 5", 157,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Julia", "julia@test.com", "578330149", "vv5kyuFgQ82UKE", "Rua 6", 155,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Rafael", "rafael@test.com", "807440772", "mE2dFj5wk7bXZV", "Rua 7", 154,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Tiago", "tiago@test.com", "714008913", "7Kx9fdi5dNJj6a", "Rua 8", 160,true);
-insert into users (usr_name, usr_email, usr_phone_number, usr_password, usr_street, usr_city_id, usr_active) values ("Helem", "helem@test.com", "484670977", "2ZnVF7pHo66jxD", "Rua 9", 154,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Joao", "joao@test.com", "7wT5sbobQKTYpr", 154,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Pedro", "pedro@test.com", "qATnbUqyfQsMm6", 154,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Marcos", "marcos@test.com", "8j2uRwsuWqSau4", 158,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Felipe", "felipe@test.com", "rCvPzrRu6rrFyb", 154,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Ana", "ana@test.com", "Mh5NPC3Ck7FpmC", 157,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Julia", "julia@test.com", "vv5kyuFgQ82UKE", 155,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Rafael", "rafael@test.com", "mE2dFj5wk7bXZV", 154,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Tiago", "tiago@test.com", "7Kx9fdi5dNJj6a", 160,true);
+insert into users (usr_name, usr_email, usr_password, usr_city_id, usr_active) values ("Helem", "helem@test.com", "2ZnVF7pHo66jxD", 154,true);
 
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Telemovel", "Telemovel ainda usavel", 3, "2021-01-01", true, 1);
 insert into adposts (ad_title, ad_description, ad_subcategory_id, ad_pub_date, ad_active, ad_owner_id) values ("Jaqueta", "Jaqueta usada", 1, "2021-01-01", true, 5);
