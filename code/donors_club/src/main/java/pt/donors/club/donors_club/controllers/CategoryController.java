@@ -25,7 +25,7 @@ public class CategoryController {
   @Autowired
   private SubcategoryRepository subCategoryRepository;
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<Category> getCategories() {
     return categoryRepository.findAll();
   }

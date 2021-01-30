@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "subcategories")
 public class Subcategory implements Serializable {
@@ -26,6 +28,7 @@ public class Subcategory implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "subc_cat_id")
+  @JsonIgnore
   private Category category;
 
   public Subcategory() {
