@@ -30,19 +30,23 @@ public class ChatController {
     return chatRepository.findChatsByUser(userId);
   }
 
-  @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Chat getChat(@PathVariable int id) {
-    Optional<Chat> _chat = chatRepository.findById(id);
+  @GetMapping(path = "/{userId}/{adId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Chat getChat(@PathVariable int userId, @PathVariable int adId) {
+    Optional<Chat> _chat = chatRepository.findChatByAdPostAndUser(userId, adId);
 
     if (_chat.isEmpty())
-      throw new NotFoundException("" + id, "Chat", "id");
+      throw new NotFoundException("(" + userId + ", " + adId + ")", "Chat", "userId, adId");
     else
       return _chat.get();
   }
 
   @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
   public Chat initChat(@RequestBody Chat chat) {
+    Optional<Chat> _chat = chatRepository.findChatByAdPostAndUser(chat.getUser().getId(), chat.getAd().getId());
 
-    return chatRepository.save(chat);
+    if (_chat.isEmpty())
+      return chatRepository.save(chat);
+    else
+      return _chat.get();
   }
 }

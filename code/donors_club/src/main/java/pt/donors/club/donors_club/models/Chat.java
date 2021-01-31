@@ -1,6 +1,7 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,6 +39,9 @@ public class Chat implements Serializable {
   @Column(name = "chat_active")
   private boolean active;
 
+  @Column(name = "chat_date")
+  private LocalDate date;
+
   public Chat() {
   }
 
@@ -46,6 +50,7 @@ public class Chat implements Serializable {
     this.ad = ad;
     this.user = user;
     active = true;
+    date = LocalDate.now();
   }
 
   public int getId() {
@@ -71,4 +76,8 @@ public class Chat implements Serializable {
   public void deactivate() {
     active = false;
   }
+
+  public LocalDate getDate() {
+    return date;
+  }  
 }

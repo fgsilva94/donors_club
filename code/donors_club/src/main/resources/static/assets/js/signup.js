@@ -78,8 +78,8 @@ submitBtn.addEventListener("click", async (e) => {
         contentType: "application/json",
       });
 
-      setStorageItem("userId", user.id);
-      setStorageItem("userName", user.name);
+      sessionStorage.setItem("userId", user.id);
+      sessionStorage.setItem("userName", user.name);
       location.replace("./index.html");
     } else {
       console.log(name.value.trim().length);

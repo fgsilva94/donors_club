@@ -13,7 +13,7 @@ public interface AdPostRepository extends CrudRepository<AdPost, Integer> {
                               + "INNER JOIN users u ON ad.ad_owner_id = u.usr_id "
                               + "INNER JOIN cities c ON u.usr_city_id = c.city_id";
 
-  String querySearchAdPosts = "SELECT ad.ad_id as id, ad.ad_title as title "
+  String querySearchAdPosts = "SELECT ad.ad_id as id, ad.ad_title as title, ad.ad_pub_date as pubDate, c.city_name as city "
                             + "FROM adposts ad "
                             + "INNER JOIN users u on ad.ad_owner_id = u.usr_id "
                             + "INNER JOIN cities c on u.usr_city_id = c.city_id "

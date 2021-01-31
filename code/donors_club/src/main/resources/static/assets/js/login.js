@@ -17,8 +17,8 @@ submitBtn.addEventListener("click", async (e) => {
         dataType: "json",
       });
 
-      setStorageItem("userId", user.id);
-      setStorageItem("userName", user.name);
+      sessionStorage.setItem("userId", user.id);
+      sessionStorage.setItem("userName", user.name);
       location.replace("./index.html");
     } else {
       result.innerHTML = `email or password is empty`;

@@ -48,7 +48,12 @@
         </div>
         <section>
             <div class="container">
-                <ul id="messages"></ul>
+                <ul id="messages" style="list-style-type: none;"></ul>
+                <div class="mb-3">
+                    <label for="text-message" class="form-label">Write a Message</label>
+                    <textarea class="form-control" id="text-message" rows="3"></textarea>
+                </div>
+                <button id="submit" type="submit" class="btn btn-primary mb-3">Send</button>
             </div>
         </section>
     </main>

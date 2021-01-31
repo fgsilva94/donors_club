@@ -33,7 +33,7 @@ public class Message implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "msg_chat_id")
-  @JsonIgnore
+  @JsonIgnoreProperties({ "messages", "active", "owner", "description" })
   private Chat chat;
 
   @ManyToOne

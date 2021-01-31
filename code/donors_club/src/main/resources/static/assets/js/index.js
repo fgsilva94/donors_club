@@ -99,17 +99,17 @@ adsField.addEventListener("click", function (e) {
 
     if (e.target.parentElement.parentElement.dataset.id) {
         id = e.target.parentElement.parentElement.dataset.id;
-        setStorageItem("adId", id);
+        sessionStorage.setItem("adId", id);
     } else if (e.target.parentElement.parentElement.parentElement.dataset.id) {
         id = e.target.parentElement.parentElement.parentElement.dataset.id;
-        setStorageItem("adId", id);
+        sessionStorage.setItem("adId", id);
     } else if (
         e.target.parentElement.parentElement.parentElement.parentElement.dataset.id
     ) {
         id =
             e.target.parentElement.parentElement.parentElement.parentElement.dataset
                 .id;
-        setStorageItem("adId", id);
+        sessionStorage.setItem("adId", id);
     } else if (
         e.target.parentElement.parentElement.parentElement.parentElement
             .parentElement.dataset.id
@@ -117,7 +117,7 @@ adsField.addEventListener("click", function (e) {
         id =
             e.target.parentElement.parentElement.parentElement.parentElement
                 .parentElement.dataset.id;
-        setStorageItem("adId", id);
+        sessionStorage.setItem("adId", id);
     }
 });
 
