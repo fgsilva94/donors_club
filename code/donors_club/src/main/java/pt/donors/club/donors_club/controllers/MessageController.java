@@ -16,7 +16,7 @@ import pt.donors.club.donors_club.models.results.SimpleResult;
 import pt.donors.club.donors_club.repositories.MessageRepository;
 
 @RestController
-@RequestMapping(path = "/api/message")
+@RequestMapping(path = "/api/messages")
 public class MessageController {
   private Logger logger = LoggerFactory.getLogger(MessageController.class);
 

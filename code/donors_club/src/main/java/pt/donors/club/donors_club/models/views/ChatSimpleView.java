@@ -5,5 +5,7 @@ public interface ChatSimpleView {
 
   String getAdTitle();
 
-  String getAdOwner();
+  String getUser();
+
+  String getUpdated();
 }

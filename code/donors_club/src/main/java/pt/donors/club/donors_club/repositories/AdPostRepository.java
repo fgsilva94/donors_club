@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import pt.donors.club.donors_club.models.AdPost;
-import pt.donors.club.donors_club.models.views.AdPostSearchView;
 import pt.donors.club.donors_club.models.views.AdPostSimpleView;
 
 public interface AdPostRepository extends CrudRepository<AdPost, Integer> {
@@ -34,6 +33,6 @@ public interface AdPostRepository extends CrudRepository<AdPost, Integer> {
   Iterable<AdPostSimpleView> findWishListSimpleView(@Param("id") int id);
 
   @Query(value = querySearchAdPosts, nativeQuery = true)
-  Iterable<AdPostSearchView> findByTitleAndByCategoryAndByCityContaining(@Param("title") String title,
+  Iterable<AdPostSimpleView> findByTitleAndByCategoryAndByCityContaining(@Param("title") String title,
       @Param("category") String category, @Param("city") String city);
 }

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.donors.club.donors_club.models.AdPost;
-import pt.donors.club.donors_club.models.views.AdPostSearchView;
 import pt.donors.club.donors_club.models.views.AdPostSimpleView;
 import pt.donors.club.donors_club.repositories.AdPostRepository;
 
@@ -50,7 +49,7 @@ public class AdController {
   }
 
   @GetMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<AdPostSearchView> searchUnits(@RequestParam(value = "title", defaultValue = "") String title,
+  public Iterable<AdPostSimpleView> searchUnits(@RequestParam(value = "title", defaultValue = "") String title,
       @RequestParam(value = "category", defaultValue = "") String category,
       @RequestParam(value = "city", defaultValue = "") String city) {
     logger.info("Finding by title: " + title + " and by city: " + city + " and category: " + category);

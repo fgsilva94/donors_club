@@ -6,11 +6,19 @@ const getElement = (selection) => {
   );
 };
 
+const getElements = (selection) => {
+  const element = document.querySelectorAll(selection);
+  if (element) return element;
+  throw new Error(
+    `Please check "${selection}" selector, no such element exist`
+  );
+};
+
 const getStorageItem = (item) => {
-  let storageItem = localStorage.getItem(item);
+  let storageItem = sessionStorage.getItem(item);
 
   if (storageItem) {
-    storageItem = JSON.parse(localStorage.getItem(item));
+    storageItem = JSON.parse(sessionStorage.getItem(item));
   } else {
     storageItem = [];
   }
@@ -18,11 +26,11 @@ const getStorageItem = (item) => {
 };
 
 const setStorageItem = (name, item) => {
-  localStorage.setItem(name, JSON.stringify(item));
+  sessionStorage.setItem(name, JSON.stringify(item));
 };
 
 const removeStorageItem = (name) => {
-  localStorage.removeItem(name);
+  sessionStorage.removeItem(name);
 };
 
-export { getElement, getStorageItem, setStorageItem, removeStorageItem };
+export { getElement, getElements, getStorageItem, setStorageItem, removeStorageItem };

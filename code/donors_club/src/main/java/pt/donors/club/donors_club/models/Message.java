@@ -38,7 +38,7 @@ public class Message implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "msg_sender_id")
-  @JsonIgnoreProperties("city")
+  @JsonIgnoreProperties({ "city", "email" })
   private User sender;
 
   public Message() {
