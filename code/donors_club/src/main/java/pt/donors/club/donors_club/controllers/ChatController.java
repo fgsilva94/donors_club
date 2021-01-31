@@ -25,7 +25,7 @@ public class ChatController {
   @Autowired
   private ChatRepository chatRepository;
 
-  @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(path = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Iterable<ChatSimpleView> getChats(@PathVariable int userId) {
     return chatRepository.findChatsByUser(userId);
   }
