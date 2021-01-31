@@ -59,7 +59,7 @@ public class AdController {
   }
 
   @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-  public AdPost addUser(@RequestBody AdPost ad) {
+  public AdPost addAdPost(@RequestBody AdPost ad) {
     return adRepository.save(ad);
   }
 }

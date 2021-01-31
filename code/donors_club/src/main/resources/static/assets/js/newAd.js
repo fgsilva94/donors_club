@@ -69,7 +69,10 @@ submitBtn.addEventListener("click", async (e) => {
 
     console.log(newAd);
 
-    if (title.value.trim.length !== 0 && description.value.trim.length !== 0) {
+    if (
+      title.value.trim().length !== 0 &&
+      description.value.trim().length !== 0
+    ) {
       let ad = await $.ajax({
         url: `/api/ads`,
         method: "post",

@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cities")
@@ -27,7 +27,7 @@ public class City implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "city_dis_id")
-  @JsonIgnore
+  @JsonIgnoreProperties("cities")
   private District district;
 
   public City() {

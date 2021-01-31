@@ -174,7 +174,7 @@ insert into cities (city_name, city_dis_id) values ("Arruda dos Vinhos", 11);
 insert into cities (city_name, city_dis_id) values ("Azambuja", 11);
 insert into cities (city_name, city_dis_id) values ("Cadaval", 11);
 insert into cities (city_name, city_dis_id) values ("Cascais", 11);
-insert into cities (city_name, city_dis_id) values ("Lisbon", 11);
+insert into cities (city_name, city_dis_id) values ("Lisboa", 11);
 insert into cities (city_name, city_dis_id) values ("Loures", 11);
 insert into cities (city_name, city_dis_id) values ("Lourinhã", 11);
 insert into cities (city_name, city_dis_id) values ("Mafra", 11);

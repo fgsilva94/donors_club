@@ -24,7 +24,7 @@ public class MessageController {
   private MessageRepository messageRepository;
 
   @GetMapping(path = "/{chatId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<Message> getChats(@PathVariable int chatId) {
+  public Iterable<Message> getMessages(@PathVariable int chatId) {
     return messageRepository.findMessagesByChatId(chatId);
   }
 

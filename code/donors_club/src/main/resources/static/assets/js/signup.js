@@ -66,9 +66,9 @@ submitBtn.addEventListener("click", async (e) => {
     };
 
     if (
-      name.value.trim.length !== 0 &&
-      email.value.trim.length !== 0 &&
-      password.value.trim.length !== 0
+      name.value.trim().length !== 0 &&
+      email.value.trim().length !== 0 &&
+      password.value.trim().length !== 0
     ) {
       let user = await $.ajax({
         url: `/api/users`,
@@ -82,6 +82,9 @@ submitBtn.addEventListener("click", async (e) => {
       setStorageItem("userName", user.name);
       location.replace("./index.html");
     } else {
+      console.log(name.value.trim().length);
+      console.log(email.value.trim().length);
+      console.log(password.value.trim().length);
       result.innerHTML = `Name, email and password must not be empty`;
     }
   } catch (error) {

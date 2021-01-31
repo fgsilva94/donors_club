@@ -25,7 +25,7 @@ public class Chat implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "chat_ad_id")
-  private AdPost owner;
+  private AdPost ad;
 
   @ManyToOne
   @JoinColumn(name = "chat_usr_id")
@@ -41,9 +41,9 @@ public class Chat implements Serializable {
   public Chat() {
   }
 
-  public Chat(int id, AdPost owner, User user) {
+  public Chat(int id, AdPost ad, User user) {
     this.id = id;
-    this.owner = owner;
+    this.ad = ad;
     this.user = user;
     active = true;
   }
@@ -52,8 +52,8 @@ public class Chat implements Serializable {
     return id;
   }
 
-  public AdPost getOwner() {
-    return owner;
+  public AdPost getAd() {
+    return ad;
   }
 
   public User getUser() {
