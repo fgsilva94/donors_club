@@ -1,6 +1,6 @@
 import { getElement, setStorageItem, getStorageItem } from "./utils.js";
 
-const adsField = getElement(".ads");
+const adsField = getElement("#ads");
 const name = getElement(".name");
 let categoriesComboBox = $("#categories-combobox")
 let citiesComboBox = $("#cities-combobox")
@@ -19,19 +19,39 @@ window.addEventListener("DOMContentLoaded", async () => {
         });
     } catch (error) { }
 
-    adsField.innerHTML = ads
-        .map((ad) => {
-            return `<a href="./adPost.html">
-          <article class="ad" data-id="${ad.id}">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/DOG-HUSKY_23JUL00.jpg/220px-DOG-HUSKY_23JUL00.jpg"
-              alt="test img"
-            />
-            <span>${ad.title}</span>
-          </article>
-        </a>`;
-        })
-        .join("");
+    // adsField.innerHTML = ads
+    //     .map((ad) => {
+    //         return `<a href="./adPost.html">
+    //       <article class="ad" data-id="${ad.id}">
+    //         <img
+    //           src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/DOG-HUSKY_23JUL00.jpg/220px-DOG-HUSKY_23JUL00.jpg"
+    //           alt="test img"
+    //         />
+    //         <span>${ad.title}</span>
+    //       </article>
+    //     </a>`;
+    //     })
+    //     .join("");
+
+    let htmlAds = ''
+    for (const ad of ads) {
+        htmlAds += `<div class="col ad mb-5" data-id="${ad.id}">
+                        <div class="card shadow-sm">
+                            <a href="./adPost.html">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/DOG-HUSKY_23JUL00.jpg/220px-DOG-HUSKY_23JUL00.jpg"
+                                        alt="test img"/>
+                                    <div class="card-body">
+                                        <p class="card-text">${ad.title}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <small class="text-muted">${ad.city}</small>
+                                            <small class="text-muted">${ad.pubDate}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>`
+    }
+    adsField.innerHTML = htmlAds
 
     try {
         categories = await $.ajax({
@@ -89,19 +109,19 @@ adsField.addEventListener("click", function (e) {
     }
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $(document).on('click', '.dropdown-menu', function (e) {
-      e.stopPropagation();
+        e.stopPropagation();
     });
     if ($(window).width() < 992) {
-	  	$('.dropdown-menu a').click(function(e){
-	  		e.preventDefault();
-	        if($(this).next('.submenu').length){
-	        	$(this).next('.submenu').toggle();
-	        }
-	        $('.dropdown').on('hide.bs.dropdown', function () {
-			   $(this).find('.submenu').hide();
-			})
-	  	});
-	}
+        $('.dropdown-menu a').click(function (e) {
+            e.preventDefault();
+            if ($(this).next('.submenu').length) {
+                $(this).next('.submenu').toggle();
+            }
+            $('.dropdown').on('hide.bs.dropdown', function () {
+                $(this).find('.submenu').hide();
+            })
+        });
+    }
 });
