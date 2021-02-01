@@ -25,11 +25,9 @@ O funcionamento do Freecycle é muito similar ao nosso, porém ele apresenta alg
 
 A plataforma deles e pouco intuitiva, e não vai direto ao ponto. São necessário vários passos para ver os anúncios que lá estão publicado.
 
-A mensagens obrigam o utilizador a se tornar membro do grupo em  que o anúncio se encontra publicado, e isso é pouco prático. Ainda falando das mensagens, o seu funcionamento está mais algo como troca de "e-mails". E em nosso projeto o chat será em tempo real.
+A mensagens obrigam o utilizador a se tornar membro do grupo em que o anúncio se encontra publicado, e isso é pouco prático. Ainda falando das mensagens, o seu funcionamento está mais algo como troca de "e-mails". E em nosso projeto o chat será em tempo real.
 
-A interface do Freecycle está completamente ultrapassada, e não há responsividade para utilização em telemóveis. Tornando-o pouco intuitivo e desagradavel para o uso.
-
-
+A interface do Freecycle está completamente ultrapassada, e não há responsividade para utilização em telemóveis. Tornando-o pouco intuitivo e desagradável para o uso.
 
 ## Casos de utilização:
 
@@ -44,10 +42,9 @@ O utilizador cria um anúncio de um produto que deseja doar no site.
 
 **Passo a passo:**
 
-1. O utilizador seleciona a opção para publicar um anúncio.
-2. Inserir título, descrição e uma categoria, estes dados são obrigatórios. E opcional atribuir fotos, endereço e telefone para contacto.
+1. Na pagina do utilizador, selecionar a opção para publicar um anúncio.
+2. Inserir título, descrição, categoria e sub-categoria do anuncio, estes dados são obrigatórios.
 3. O utilizador confirma e faz a submissão do anúncio.
-4. Uma mensagem de confirmação é retornada para o utilizador.
 
 **Pós-condições:**
 
@@ -84,42 +81,18 @@ Utilizadores podem trocar mensagens entre si pela plataforma através do anúnci
 
 **Pré-condições:**
 
-1. Possuir um cadastro e estar logado na plataforma.
-2. Estar na página do anúncio.
+1. Possuir um cadastro e ter feito o login na plataforma.
 
 **Passo a passo:**
 
 1. Na página do anúncio o utilizador pode enviar uma mensagem diretamente ao anunciante através da plataforma.
-2. Ao selecionar a opção para "enviar mensagem", o utilizador pode escrever uma mensagem para o anunciante. E o chat é iniciado entre ambos através do anúncio.
-3. O anunciante recebe a mensagem e pode enviar a resposta.
-4. A confirmação de recebimento das mensagens enviadas é retornada.
-5. O utilizador pode entrar em contacto por telefone se houver um atribuído ao anúncio.
+2. Ao selecionar a opção para "enviar mensagem", o utilizador pode escrever uma mensagem para o anunciante.
+3. O chat é iniciado entre ambos através do anúncio e criado na base de dados.
+4. O anunciante recebe a mensagem e pode enviar a resposta.
 
 **Pós-condições:**
 
 1. As mensagens trocadas são armazenadas na base de dados.
-
-### Encerrar um anuncio
-
-**Descrição:**
-Após a doação de um produto ser concluída, o anúncio pode ser encerrado.
-
-**Pré-condições:**
-
-1. Possuir um cadastro e estar logado na plataforma.
-2. Ser dono do anúncio.
-3. Estar na página do anúncio.
-
-**Passo a passo:**
-
-1. Selecionar a opção para encerrar o anúncio.
-2. Confirmar o encerramento do anúncio.
-3. O anúncio é finalizado e não será mais exibido para outros utilizadores.
-4. Anúncios encerrados poderão ser acedido pelos donos dos anúncios, na página de "anúncios encerrados".
-
-**Pós-condições:**
-
-1. O anúncio finalizado terá seu status atualizado na base de dados.
 
 ## Referências:
 
