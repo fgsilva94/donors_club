@@ -6,6 +6,13 @@
   height: auto;
 }
 
+body,
+a,
+li,
+.btn {
+  font-size: 1.4rem !important;
+}
+
 article {
   border: solid 3px black;
   margin-bottom: 5px;
