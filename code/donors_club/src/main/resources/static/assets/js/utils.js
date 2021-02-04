@@ -20,7 +20,7 @@ const getStorageItem = (item) => {
   if (storageItem) {
     storageItem = JSON.parse(sessionStorage.getItem(item));
   } else {
-    storageItem = [];
+    storageItem = null;
   }
   return storageItem;
 };
@@ -33,4 +33,10 @@ const removeStorageItem = (name) => {
   sessionStorage.removeItem(name);
 };
 
-export { getElement, getElements, getStorageItem, setStorageItem, removeStorageItem };
+export {
+  getElement,
+  getElements,
+  getStorageItem,
+  setStorageItem,
+  removeStorageItem,
+};

@@ -2,8 +2,6 @@ package pt.donors.club.donors_club.controllers;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +19,6 @@ import pt.donors.club.donors_club.repositories.AdPostRepository;
 @RestController
 @RequestMapping(path = "/api/ads")
 public class AdController {
-  private Logger logger = LoggerFactory.getLogger(AdController.class);
-
   @Autowired
   private AdPostRepository adRepository;
 
@@ -52,7 +48,6 @@ public class AdController {
   public Iterable<AdPostSimpleView> searchUnits(@RequestParam(value = "title", defaultValue = "") String title,
       @RequestParam(value = "category", defaultValue = "") String category,
       @RequestParam(value = "city", defaultValue = "") String city) {
-    logger.info("Finding by title: " + title + " and by city: " + city + " and category: " + category);
 
     return adRepository.findByTitleAndByCategoryAndByCityContaining(title, category, city);
   }

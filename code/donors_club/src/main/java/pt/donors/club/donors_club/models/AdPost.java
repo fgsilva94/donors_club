@@ -47,7 +47,7 @@ public class AdPost implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnoreProperties({ "email", "street", "active" })
+  @JsonIgnoreProperties({ "email", "active" })
   private User owner;
 
   public AdPost() {

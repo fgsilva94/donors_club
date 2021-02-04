@@ -1,9 +1,9 @@
-import { getElement, setStorageItem } from "./utils.js";
+import { getElement, setStorageItem, removeStorageItem } from "./utils.js";
 
 const email = getElement("#email");
 const password = getElement("#password");
 const submitBtn = getElement("#submit");
-const result = getElement(".result");
+const logout = getElement(".logout");
 
 submitBtn.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -19,11 +19,21 @@ submitBtn.addEventListener("click", async (e) => {
 
       sessionStorage.setItem("userId", user.id);
       sessionStorage.setItem("userName", user.name);
-      location.replace("./index.html");
+      location.replace("./");
     } else {
-      result.innerHTML = `email or password is empty`;
+      alert(`email or password is empty`);
     }
   } catch (error) {
-    result.innerHTML = `email or password is invalid`;
+    alert(`email or password is invalid`);
   }
+});
+
+logout.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  removeStorageItem("adId");
+  removeStorageItem("userId");
+  removeStorageItem("userName");
+
+  location.replace("./");
 });

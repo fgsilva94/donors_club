@@ -1,14 +1,18 @@
-import { getElement, setStorageItem } from "./utils.js";
+import { getElement, setStorageItem, removeStorageItem } from "./utils.js";
+import { toggleBtn } from "./loginBtnToggle.js";
 
 const name = getElement("#name");
 const email = getElement("#email");
 const password = getElement("#password");
-const district = getElement("#district");
-const city = getElement("#city");
+const district = getElement("#dropdown-dist");
+const btnDropdown = getElement("#btn-district");
 const submitBtn = getElement("#submit");
-const result = getElement(".result");
+const paramDist = getElement("#param-dist");
+const logout = getElement(".logout");
 
 window.addEventListener("DOMContentLoaded", async () => {
+  toggleBtn();
+
   try {
     let districts = await $.ajax({
       url: `/api/districts`,
@@ -18,38 +22,29 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     district.innerHTML = districts
       .map((dist) => {
-        return `<option value="${dist.id}">${dist.name}</option>`;
+        let cities = dist.cities
+          .map((city) => {
+            return `<li><a class="dropdown-item" data-id="${city.id}">${city.name}</a></li>`;
+          })
+          .join("");
+
+        return `<li>
+                  <a class="dropdown-item dropdown-toggle">${dist.name}</a>
+                  <ul class="submenu dropdown-menu">
+                      ${cities}
+                  </ul>
+                        </li>`;
       })
       .join("");
 
-    let cities = await $.ajax({
-      url: `/api/districts/${district.value}/cities`,
-      method: "get",
-      dataType: "json",
+    $("#dropdown-dist .dropdown-item").on("click", (e) => {
+      btnDropdown.setAttribute("aria-expanded", "false");
+      btnDropdown.innerText = e.target.textContent;
+      paramDist.value = e.target.getAttribute("data-id");
     });
-
-    city.innerHTML = cities
-      .map((ct) => {
-        return `<option value="${ct.id}">${ct.name}</option>`;
-      })
-      .join("");
-  } catch (error) {}
-});
-
-district.addEventListener("change", async () => {
-  try {
-    let cities = await $.ajax({
-      url: `/api/districts/${district.value}/cities`,
-      method: "get",
-      dataType: "json",
-    });
-
-    city.innerHTML = cities
-      .map((ct) => {
-        return `<option value="${ct.id}">${ct.name}</option>`;
-      })
-      .join("");
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 submitBtn.addEventListener("click", async (e) => {
@@ -61,7 +56,7 @@ submitBtn.addEventListener("click", async (e) => {
       email: email.value,
       password: password.value,
       city: {
-        id: city.value,
+        id: paramDist.value,
       },
     };
 
@@ -78,16 +73,21 @@ submitBtn.addEventListener("click", async (e) => {
         contentType: "application/json",
       });
 
-      sessionStorage.setItem("userId", user.id);
-      sessionStorage.setItem("userName", user.name);
-      location.replace("./index.html");
+      location.replace("./login.html");
     } else {
-      console.log(name.value.trim().length);
-      console.log(email.value.trim().length);
-      console.log(password.value.trim().length);
-      result.innerHTML = `Name, email and password must not be empty`;
+      alert(`Name, email and password must not be empty`);
     }
   } catch (error) {
-    result.innerHTML = `Error creating new user`;
+    alert(`Error creating new user!`);
   }
+});
+
+logout.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  removeStorageItem("adId");
+  removeStorageItem("userId");
+  removeStorageItem("userName");
+
+  location.replace("./");
 });

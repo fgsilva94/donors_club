@@ -2,8 +2,6 @@ package pt.donors.club.donors_club.controllers;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +18,6 @@ import pt.donors.club.donors_club.repositories.UserRepository;
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
-  private Logger logger = LoggerFactory.getLogger(UserController.class);
-
   @Autowired
   private UserRepository userRepository;
 
