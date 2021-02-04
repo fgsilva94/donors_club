@@ -10,7 +10,7 @@ import pt.donors.club.donors_club.models.Chat;
 import pt.donors.club.donors_club.models.views.ChatSimpleView;
 
 public interface ChatRepository extends CrudRepository<Chat, Integer> {
-  String queryChatSimpleView = "SELECT c.chat_id as id, ad.ad_title as adTitle, ow.usr_name as user, "
+  String queryChatSimpleView = "SELECT c.chat_id as id, ad.ad_title as adTitle, IF(c.chat_usr_id = :id, ow.usr_name, u.usr_name) as user, "
       + "(SELECT MAX(msg_time) FROM messages WHERE msg_chat_id = c.chat_id) as updated " + "FROM chats c "
       + "INNER JOIN adposts ad ON c.chat_ad_id = ad.ad_id " + "INNER JOIN users u ON c.chat_usr_id = u.usr_id "
       + "INNER JOIN users ow ON ad.ad_owner_id = ow.usr_id " + "WHERE c.chat_usr_id = :id OR ad.ad_owner_id = :id";
