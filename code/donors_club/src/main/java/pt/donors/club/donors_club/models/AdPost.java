@@ -42,12 +42,10 @@ public class AdPost implements Serializable {
   private LocalDateTime publicationDate;
 
   @Column(name = "ad_active")
-  @JsonIgnore
   private boolean active;
 
   @ManyToOne
   @JoinColumn(name = "ad_owner_id")
-  @JsonIgnoreProperties({ "email", "active" })
   private User owner;
 
   public AdPost() {

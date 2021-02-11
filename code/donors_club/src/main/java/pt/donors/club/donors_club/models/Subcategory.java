@@ -26,18 +26,12 @@ public class Subcategory implements Serializable {
   @Column(name = "subc_name")
   private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "subc_cat_id")
-  @JsonIgnore
-  private Category category;
-
   public Subcategory() {
   }
 
-  public Subcategory(int id, String name, Category category) {
+  public Subcategory(int id, String name) {
     this.id = id;
     this.name = name;
-    this.category = category;
   }
 
   public int getId() {
@@ -46,9 +40,5 @@ public class Subcategory implements Serializable {
 
   public String getName() {
     return name;
-  }
-
-  public Category getCategory() {
-    return category;
   }
 }

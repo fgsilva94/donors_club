@@ -2,6 +2,8 @@ package pt.donors.club.donors_club.controllers;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,34 +14,90 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.donors.club.donors_club.models.User;
+import pt.donors.club.donors_club.models.exceptions.NotFoundException;
+import pt.donors.club.donors_club.models.results.SimpleResult;
+import pt.donors.club.donors_club.models.views.AdPostSimpleView;
+import pt.donors.club.donors_club.models.views.ChatSimpleView;
 import pt.donors.club.donors_club.models.views.UserLoginView;
+import pt.donors.club.donors_club.repositories.AdPostRepository;
+import pt.donors.club.donors_club.repositories.ChatRepository;
 import pt.donors.club.donors_club.repositories.UserRepository;
 
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
-  @Autowired
-  private UserRepository userRepository;
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Iterable<User> getUsers() {
-    return userRepository.findAll();
-  }
+    @Autowired
+    private UserRepository userRepository;
 
-  @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public User getUser(@PathVariable int id) {
-    Optional<User> usr = userRepository.findById(id);
+    @Autowired
+    private AdPostRepository adRepository;
 
-    return usr.get();
-  }
+    @Autowired
+    private ChatRepository chatRepository;
 
-  @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public User addUser(@RequestBody User usr) {
-    return userRepository.save(usr);
-  }
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<User> getUsers() {
+        logger.info("Sending all users");
 
-  @GetMapping(value = "/{email}/{password}/", produces = MediaType.APPLICATION_JSON_VALUE)
-  public UserLoginView login(@PathVariable String email, @PathVariable String password) {
-    return userRepository.login(email, password);
-  }
+        return userRepository.findAll();
+    }
+
+    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getUser(@PathVariable int id) {
+        logger.info("Sending user with id " + id);
+
+        Optional<User> _user = userRepository.findById(id);
+
+        if (_user.isEmpty())
+            throw new NotFoundException(""+id, "User", "id");
+        else
+            return _user.get();
+    }
+
+    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public SimpleResult addUser(@RequestBody User user) {
+        logger.info("Adding new user with id " + user.getId());
+
+        userRepository.save(user);
+
+        return new SimpleResult("Adding new user", user);
+    }
+
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserLoginView login(@RequestBody User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+        logger.info("Login use with email " + email);
+        
+
+        Optional<UserLoginView> _user = userRepository.login(email, password);
+
+        if (_user.isEmpty())
+            throw new NotFoundException("("+email+", "+password+")" , "User", "(email, password)");
+        else
+            return _user.get();
+    }
+
+    @GetMapping(path = "/my_adposts/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<AdPostSimpleView> getMyAdPosts(@PathVariable int userId) {
+        logger.info("Sending all ad posts simple view by user id " + userId);
+
+        return adRepository.findAllMyAdPostsSimpleView(userId);
+    }
+
+    @GetMapping(path = "/wishlist/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<AdPostSimpleView> getWishlists(@PathVariable int userId) {
+        logger.info("Sending all ad posts in wishlist by user id " + userId);
+
+        return adRepository.findWishListSimpleView(userId);
+    }
+
+    @GetMapping(path = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<ChatSimpleView> getChats(@PathVariable int userId) {
+        logger.info("Sending all chats by user id " + userId);
+
+        return chatRepository.findChatsByUser(userId);
+    }
 }

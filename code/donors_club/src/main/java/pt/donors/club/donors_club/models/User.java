@@ -1,20 +1,14 @@
 package pt.donors.club.donors_club.models;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -40,23 +34,7 @@ public class User implements Serializable {
   private City city;
 
   @Column(name = "usr_active")
-  @JsonIgnore
   private boolean active;
-
-  @OneToMany
-  @JoinColumn(name = "ad_owner_id")
-  @JsonIgnore
-  private List<AdPost> ads;
-
-  @OneToMany
-  @JoinColumns(@JoinColumn(name = "chat_ad_id"))
-  @JsonIgnore
-  private List<Chat> chats;
-
-  @OneToMany
-  @JoinColumns(@JoinColumn(name = "wl_usr_id"))
-  @JsonIgnore
-  private List<WishList> wishLists;
 
   public User() {
   }
@@ -78,16 +56,12 @@ public class User implements Serializable {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public String getPassword() {
+    return password;
   }
 
   public void setPassword(String password) {
@@ -108,17 +82,5 @@ public class User implements Serializable {
 
   public void deactivate() {
     active = false;
-  }
-
-  public List<AdPost> getAds() {
-    return ads;
-  }
-
-  public List<Chat> getChats() {
-    return chats;
-  }
-
-  public List<WishList> getWishLists() {
-    return wishLists;
   }
 }

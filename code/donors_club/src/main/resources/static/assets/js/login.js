@@ -11,10 +11,18 @@ submitBtn.addEventListener("click", async (e) => {
   let user;
   try {
     if (email.value && password.value) {
+      let usr = {
+        id: 0,
+        email: email.value,
+        password: password.value
+      }
+
       user = await $.ajax({
-        url: `/api/users/${email.value}/${password.value}/`,
-        method: "get",
+        url: `/api/users/login`,
+        method: "post",
         dataType: "json",
+        data: JSON.stringify(usr),
+        contentType: "application/json"
       });
 
       sessionStorage.setItem("userId", user.id);

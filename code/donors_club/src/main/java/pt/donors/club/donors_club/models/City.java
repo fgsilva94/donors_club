@@ -25,18 +25,12 @@ public class City implements Serializable {
   @Column(name = "city_name")
   private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "city_dis_id")
-  @JsonIgnoreProperties("cities")
-  private District district;
-
   public City() {
   }
 
-  public City(int id, String name, District district) {
+  public City(int id, String name) {
     this.id = id;
     this.name = name;
-    this.district = district;
   }
 
   public int getId() {
@@ -45,9 +39,5 @@ public class City implements Serializable {
 
   public String getName() {
     return name;
-  }
-
-  public District getDistrict() {
-    return district;
   }
 }
