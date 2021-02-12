@@ -1,11 +1,13 @@
 package pt.donors.club.donors_club.models.views;
 
 public interface MessageSimpleView {
-    int getId();
+  int getId();
 
-    String getText();
+  String getText();
 
-    String getTime();
+  String getTime();
 
-    int getSenderId();
+  int getSenderId();
+
+  String getSenderName();
 }

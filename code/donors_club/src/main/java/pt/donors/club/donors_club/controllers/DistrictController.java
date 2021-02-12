@@ -5,36 +5,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pt.donors.club.donors_club.models.City;
 import pt.donors.club.donors_club.models.District;
-import pt.donors.club.donors_club.repositories.CityRepository;
 import pt.donors.club.donors_club.repositories.DistrictRepository;
 
 @RestController
 @RequestMapping(path = "/api/districts")
 public class DistrictController {
-    private Logger logger = LoggerFactory.getLogger(MessageController.class);
+  private Logger logger = LoggerFactory.getLogger(MessageController.class);
 
-    @Autowired
-    private DistrictRepository districtRepository;
+  @Autowired
+  private DistrictRepository districtRepository;
 
-    @Autowired
-    private CityRepository cityRepository;
+  @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<District> getDistricts() {
+    logger.info("Sending all districts");
 
-    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<District> getDistricts() {
-        logger.info("Sending all districts");
-
-        return districtRepository.findAll();
-    }
-
-    @GetMapping(path = "/{id}/cities", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<City> getCities(@PathVariable int id) {
-        logger.info("Sending all cities by district id " + id);
-        
-        return cityRepository.getCitiesByDistrict(id);
-    }
+    return districtRepository.findAll();
+  }
 }

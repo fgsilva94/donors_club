@@ -26,78 +26,70 @@ import pt.donors.club.donors_club.repositories.UserRepository;
 @RestController
 @RequestMapping(path = "/api/users")
 public class UserController {
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+  private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-    @Autowired
-    private AdPostRepository adRepository;
+  @Autowired
+  private AdPostRepository adRepository;
 
-    @Autowired
-    private ChatRepository chatRepository;
+  @Autowired
+  private ChatRepository chatRepository;
 
-    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<User> getUsers() {
-        logger.info("Sending all users");
+  @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public User getUser(@PathVariable int id) {
+    logger.info("Sending user with id " + id);
 
-        return userRepository.findAll();
-    }
+    Optional<User> _user = userRepository.findById(id);
 
-    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User getUser(@PathVariable int id) {
-        logger.info("Sending user with id " + id);
+    if (_user.isEmpty())
+      throw new NotFoundException("" + id, "User", "id");
+    else
+      return _user.get();
+  }
 
-        Optional<User> _user = userRepository.findById(id);
+  @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+  public SimpleResult addUser(@RequestBody User user) {
+    logger.info("Adding new user with id " + user.getId());
 
-        if (_user.isEmpty())
-            throw new NotFoundException(""+id, "User", "id");
-        else
-            return _user.get();
-    }
+    userRepository.save(user);
 
-    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public SimpleResult addUser(@RequestBody User user) {
-        logger.info("Adding new user with id " + user.getId());
+    return new SimpleResult("Adding new user", user);
+  }
 
-        userRepository.save(user);
+  @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+  public UserLoginView login(@RequestBody User user) {
+    String email = user.getEmail();
+    String password = user.getPassword();
+    logger.info("Login use with email " + email);
 
-        return new SimpleResult("Adding new user", user);
-    }
+    Optional<UserLoginView> _user = userRepository.login(email, password);
 
-    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserLoginView login(@RequestBody User user) {
-        String email = user.getEmail();
-        String password = user.getPassword();
-        logger.info("Login use with email " + email);
-        
+    if (_user.isEmpty())
+      throw new NotFoundException("(" + email + ", " + password + ")", "User", "(email, password)");
+    else
+      return _user.get();
+  }
 
-        Optional<UserLoginView> _user = userRepository.login(email, password);
+  @GetMapping(path = "/{userId}/ads", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<AdPostSimpleView> getMyAdPosts(@PathVariable int userId) {
+    logger.info("Sending all ad posts simple view by user id " + userId);
 
-        if (_user.isEmpty())
-            throw new NotFoundException("("+email+", "+password+")" , "User", "(email, password)");
-        else
-            return _user.get();
-    }
+    return adRepository.findAllMyAdPostsSimpleView(userId);
+  }
 
-    @GetMapping(path = "/my_adposts/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<AdPostSimpleView> getMyAdPosts(@PathVariable int userId) {
-        logger.info("Sending all ad posts simple view by user id " + userId);
+  @GetMapping(path = "/{userId}/wishlist", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<AdPostSimpleView> getWishlists(@PathVariable int userId) {
+    logger.info("Sending all ad posts in wishlist by user id " + userId);
 
-        return adRepository.findAllMyAdPostsSimpleView(userId);
-    }
+    return adRepository.findWishListSimpleView(userId);
+  }
 
-    @GetMapping(path = "/wishlist/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<AdPostSimpleView> getWishlists(@PathVariable int userId) {
-        logger.info("Sending all ad posts in wishlist by user id " + userId);
+  @GetMapping(path = "/{userId}/chats", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<ChatSimpleView> getChats(@PathVariable int userId) {
+    logger.info("Sending all chats by user id " + userId);
 
-        return adRepository.findWishListSimpleView(userId);
-    }
-
-    @GetMapping(path = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<ChatSimpleView> getChats(@PathVariable int userId) {
-        logger.info("Sending all chats by user id " + userId);
-
-        return chatRepository.findChatsByUser(userId);
-    }
+    return chatRepository.findChatsByUser(userId);
+  }
 }

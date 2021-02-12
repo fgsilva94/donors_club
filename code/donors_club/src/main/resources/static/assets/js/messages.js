@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 async function buildMessages() {
   try {
     let messages = await $.ajax({
-      url: `/api/messages/${getStorageItem("chatId")}`,
+      url: `/api/chats/${getStorageItem("chatId")}/messages`,
       method: "get",
       dataType: "json",
     });
@@ -25,12 +25,12 @@ async function buildMessages() {
                         <div class="rounded p-3" data-id="${
                           msg.id
                         }" style="width: 60%; ${
-          msg.sender.id === userId
+          msg.senderId === userId
             ? "text-align: right; background-color:#ceddff; margin-left: auto;"
             : "text-align: left; background-color:#f2f4f5;"
         }">
-                            <small class="sender" data-id="${msg.sender.id}">${
-          msg.sender.name
+                            <small class="sender" data-id="${msg.senderId}">${
+          msg.senderName
         }</small>
                             <p>${msg.text}</p>
                             <small>${msg.time}</small>
@@ -38,7 +38,9 @@ async function buildMessages() {
                     </li>`;
       })
       .join("");
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 submitBtn.addEventListener("click", async (e) => {

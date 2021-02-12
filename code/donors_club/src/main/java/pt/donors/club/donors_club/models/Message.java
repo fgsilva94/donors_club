@@ -30,12 +30,10 @@ public class Message implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "msg_chat_id")
-  // @JsonIgnoreProperties({ "messages", "active", "owner", "description" })
   private Chat chat;
 
   @ManyToOne
   @JoinColumn(name = "msg_sender_id")
-  // @JsonIgnoreProperties({ "city", "email" })
   private User sender;
 
   public Message() {

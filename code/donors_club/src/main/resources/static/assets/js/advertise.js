@@ -69,7 +69,8 @@ submitBtn.addEventListener("click", async (e) => {
 
     if (
       title.value.trim().length !== 0 &&
-      description.value.trim().length !== 0
+      description.value.trim().length !== 0 &&
+      getStorageItem("userId")
     ) {
       let ad = await $.ajax({
         url: `/api/ads`,
@@ -80,6 +81,8 @@ submitBtn.addEventListener("click", async (e) => {
       });
 
       location.replace("./");
+    } else if (!getStorageItem("userId")) {
+      alert(`You must login first`);
     } else {
       alert(`title and description must not be empty`);
     }

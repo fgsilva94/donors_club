@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   try {
     let chats = await $.ajax({
-      url: `/api/chats/user/${getStorageItem("userId")}`,
+      url: `/api/users/${getStorageItem("userId")}/chats`,
       method: "get",
       dataType: "json",
     });

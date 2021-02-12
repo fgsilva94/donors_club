@@ -41,7 +41,7 @@ submitBtn.addEventListener("click", async (e) => {
         date: new Date(),
       };
 
-      let chat = await $.ajax({
+      let chatId = await $.ajax({
         url: `/api/chats`,
         method: "post",
         dataType: "json",
@@ -53,7 +53,7 @@ submitBtn.addEventListener("click", async (e) => {
         text: textMessage.value,
         time: new Date(),
         chat: {
-          id: chat.id,
+          id: chatId,
         },
         sender: {
           id: getStorageItem("userId"),
@@ -68,14 +68,18 @@ submitBtn.addEventListener("click", async (e) => {
         contentType: "application/json",
       });
 
-      sessionStorage.setItem("chatId", chat.id);
+      sessionStorage.setItem("chatId", chatId);
       textMessage.value = "";
       window.location = "messages.html";
     } else {
       alert(`Message must not be empty`);
     }
   } catch (error) {
-    alert(`You must login first`);
+    if (!getStorageItem("userId")) {
+      alert(`You must login first`);
+    } else {
+      alert(error.responseJSON.message);
+    }
   }
 });
 

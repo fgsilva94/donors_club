@@ -11,55 +11,55 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import pt.donors.club.donors_club.models.AdPost;
 import pt.donors.club.donors_club.models.Chat;
-import pt.donors.club.donors_club.models.exceptions.NotAcceptableException;
-import pt.donors.club.donors_club.models.exceptions.NotFoundException;
-import pt.donors.club.donors_club.models.views.AdPostSimpleView;
 import pt.donors.club.donors_club.models.views.ChatSimpleView;
+import pt.donors.club.donors_club.models.views.MessageSimpleView;
 import pt.donors.club.donors_club.repositories.AdPostRepository;
 import pt.donors.club.donors_club.repositories.ChatRepository;
+import pt.donors.club.donors_club.repositories.MessageRepository;
 
 @RestController
 @RequestMapping(path = "/api/chats")
 public class ChatController {
-    private Logger logger = LoggerFactory.getLogger(ChatController.class);
+  private Logger logger = LoggerFactory.getLogger(ChatController.class);
 
-    @Autowired
-    private ChatRepository chatRepository;
+  @Autowired
+  private ChatRepository chatRepository;
 
-    @Autowired
-    private AdPostRepository adRepository;
+  @Autowired
+  private AdPostRepository adRepository;
 
-    @GetMapping(path = "/{userId}/{adId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ChatSimpleView getChat(@PathVariable int userId, @PathVariable int adId) {
-        logger.info("Sending chat simple view with user id "+userId+" and ad id "+adId);
+  @Autowired
+  private MessageRepository messageRepository;
 
-        Optional<ChatSimpleView> _chat = chatRepository.findChatByAdPostAndUser(userId, adId);
+  @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+  public int initChat(@RequestBody Chat chat) {
+    logger.info("Trying to initialize new chat");
 
-        if (_chat.isEmpty())
-            throw new NotFoundException("(" + userId + ", " + adId + ")", "Chat", "userId, adId");
-        else
-            return _chat.get();
+    int adId = chat.getAd().getId();
+    int userId = chat.getUser().getId();
+
+    Optional<ChatSimpleView> _chat = chatRepository.findChatByAdPostAndUser(adId, userId);
+
+    if (_chat.isEmpty()) {
+      Optional<AdPost> _ad = adRepository.findById(adId);
+
+      if (_ad.get().getOwner().getId() != userId) {
+        return chatRepository.save(chat).getId();
+      } else {
+        throw new RuntimeException("You can't send a message to yourself!");
+      }
+    } else {
+      return _chat.get().getId();
     }
+  }
 
-    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public int initChat(@RequestBody Chat chat) {
-        logger.info("Try initialize new chat with id " + chat.getId());
+  @GetMapping(path = "/{chatId}/messages", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Iterable<MessageSimpleView> getMessages(@PathVariable int chatId) {
+    logger.info("Sending all messages by chat id " + chatId);
 
-        int adId = chat.getUser().getId();
-        int userId = chat.getUser().getId();
-        
-        Optional<ChatSimpleView> _chat = chatRepository.findChatByAdPostAndUser(adId, userId);
-
-        if (_chat.isEmpty()) {
-            Optional<AdPostSimpleView> _ad = adRepository.findSimpleViewByIdAndByOwner(userId, adId);
-
-            if (_ad.isEmpty())
-                return chatRepository.save(chat).getId();
-            else
-                throw new NotAcceptableException("("+adId+", "+userId+")", "Chat", "(adId, userId)");
-        } else {
-            return _chat.get().getId();
-        }
-    }
+    return messageRepository.findMessagesByChatId(chatId);
+  }
 }
