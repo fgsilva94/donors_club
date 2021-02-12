@@ -10,5 +10,4 @@ public class NotAcceptableException extends RuntimeException {
     public NotAcceptableException(String id, String elemType, String idName) {
         super(elemType + " with " + idName + " " + id + " not acceptable.");
     }
-
 }

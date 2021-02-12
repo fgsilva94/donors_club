@@ -4,4 +4,6 @@ public interface AdPostView {
   String getTitle();
 
   String getDescription();
+
+  int getOwner();
 }

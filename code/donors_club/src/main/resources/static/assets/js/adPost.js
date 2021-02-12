@@ -1,7 +1,8 @@
 import { getElement, getStorageItem, removeStorageItem } from "./utils.js";
 import { toggleBtn } from "./loginBtnToggle.js";
 
-const _ad = getElement(".ad");
+const _ad = getElement("#ad");
+const messageArea = getElement("#message");
 const textMessage = getElement("#text-message");
 const submitBtn = getElement("#submit1");
 const logout = getElement(".logout");
@@ -19,10 +20,14 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
 
     const { title, description } = ad;
-
+    
     _ad.innerHTML = `
       <p>Title: ${title}</p>
       <p>Description: ${description}</p>`;
+
+    if (ad.owner === getStorageItem("userId")) {
+      messageArea.style.display = 'none';
+    }
   } catch (error) {}
 });
 
